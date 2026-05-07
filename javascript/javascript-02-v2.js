@@ -19,25 +19,28 @@ let operadores = document.getElementsByClassName("operador")
 let prm, operacion
 for (const key in operadores) {
     if (!Object.hasOwn(operadores, key)) continue;
+
     const boton = operadores[key];
     if (boton.innerText == "Ce") {
         boton.addEventListener("click", limpiar)
     } else if (boton.innerText == "+") {
-        boton.addEventListener("click", obtener_parametro)
+        boton.addEventListener("click", operar)
     } else if (boton.innerText == "-") {
-        boton.addEventListener("click", obtener_parametro)
-    } else if (boton.innerText == "*") {
-        boton.addEventListener("click", obtener_parametro)
-    } else if (boton.innerText == "/") {
-        boton.addEventListener("click", obtener_parametro)
-    } else if (boton.innerText == "=") {
+        boton.addEventListener("click", operar)
+    } else if (boton.innerText == "*"){
+        boton.addEventListener("click", operar)
+    } else if (boton.innerText == "/"){
+        boton.addEventListener("click", operar)
+    } else if (boton.innerText == "="){
         boton.addEventListener("click", igual)
     } else {
-        boton.addEventListener("click", pintar2)
+        boton.addEventListener("click", pintar1)
     }
+
+
 }
 
-function pintar2(e) {
+function pintar1(e) {
     console.log(e.target.innerText)
 }
 
@@ -45,22 +48,22 @@ function limpiar() {
     resultado.value = ""
 }
 
-function obtener_parametro(e) {
+function operar(e) {
     prm = resultado.value
     operacion = e.target.innerText
     resultado.value = ""
     e.target.style.backgroundColor = "red"
 }
 
-function igual() {
+function igual(){
     let prm2 = resultado.value
-    if (operacion == "+") {
+    if (operacion == "+"){
         resultado.value = parseInt(prm) + parseInt(prm2)
-    } else if (operacion == "-") {
+    } else if(operacion == "-"){
         resultado.value = parseInt(prm) - parseInt(prm2)
-    } else if (operacion == "*") {
+    } else if(operacion == "*"){
         resultado.value = parseInt(prm) * parseInt(prm2)
-    } else if (operacion == "/") {
+    } else if(operacion == "/"){
         resultado.value = parseInt(prm) / parseInt(prm2)
     }
 }
